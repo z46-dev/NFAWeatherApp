@@ -29,22 +29,22 @@ function parse(originalBuffer) {
     // s<n> = string of n bytes (s3, s4, s5, etc.)
     // u8 = unsigned 8-bit integer
     // u16 = unsigned 16-bit integer (little-endian)
+    console.log(buffer.readUInt8(5));
     const format = new Format(buffer, [
         ["s3", "LOO"],
         ["i8", "P|Barometric Trend"],
-        ["i8", "LOOP Type (0 or 1)"],
+        ["u8", "LOOP Type (0 or 1)"],
         ["u16BE", "Next Record Pointer"],
         ["u16BE", "Barometer", x => x / 1000],
-        ["u16LE", "Inside Temperature", x => x / 10 + "° F"],
+        ["i16LE", "Inside Temperature", x => x / 10 + "° F"],
         ["u8", "Inside Humidity", x => x + "%"],
-        ["u16BE", "Outside Temperature", x => x / 10 + "° F"],
+        ["i16BE", "Outside Temperature", x => x / 10 + "° F"],
         ["u8", "Wind Speed"],
         ["u8", "10min Wind Speed"],
-        ["u16LE", "Wind Direction", x => x + "°"]
+        ["u16BE", "Wind Direction", x => x + "°"]
     ]);
 
     console.log(format.parse());
-    console.log("\n\n");
 }
 
 buffers.forEach(parse);
