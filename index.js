@@ -31,16 +31,16 @@ function parse(originalBuffer) {
     // u16 = unsigned 16-bit integer (little-endian)
     const format = new Format(buffer, [
         ["s3", "LOO"],
-        ["u8", "P|Barometric Trend"],
-        ["u8", "LOOP Type (0 or 1)"],
-        ["u16", "Next Record Pointer"],
-        ["u16", "Barometer", x => x / 1000],
-        ["u16", "Inside Temperature", x => x / 10 + "° F"],
+        ["i8", "P|Barometric Trend"],
+        ["i8", "LOOP Type (0 or 1)"],
+        ["u16BE", "Next Record Pointer"],
+        ["u16BE", "Barometer", x => x / 1000],
+        ["u16LE", "Inside Temperature", x => x / 10 + "° F"],
         ["u8", "Inside Humidity", x => x + "%"],
-        ["u16", "Outside Temperature", x => x / 10 + "° F"],
+        ["u16BE", "Outside Temperature", x => x / 10 + "° F"],
         ["u8", "Wind Speed"],
         ["u8", "10min Wind Speed"],
-        ["u16", "Wind Direction", x => x + "°"]
+        ["u16LE", "Wind Direction", x => x + "°"]
     ]);
 
     console.log(format.parse());
