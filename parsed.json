@@ -2,7 +2,7 @@
     {
         "originalSize": 111,
         "validOffset": 1,
-        "validSize": 110,
+        "validSize": 108,
         "parsed": {
             "LOO": "LOO",
             "P|Barometric Trend": -61,
@@ -17,8 +17,8 @@
             "Wind Direction": "123°"
         },
         "crc": {
-            "score": 15288198,
-            "valid": false
+            "score": 0,
+            "valid": true
         }
     },
     {
@@ -68,7 +68,7 @@
     {
         "originalSize": 110,
         "validOffset": 0,
-        "validSize": 110,
+        "validSize": 108,
         "parsed": {
             "LOO": "LOO",
             "P|Barometric Trend": -61,
@@ -83,14 +83,14 @@
             "Wind Direction": "123°"
         },
         "crc": {
-            "score": 15288198,
-            "valid": false
+            "score": 0,
+            "valid": true
         }
     },
     {
         "originalSize": 113,
         "validOffset": 0,
-        "validSize": 113,
+        "validSize": 108,
         "parsed": {
             "LOO": "LOO",
             "P|Barometric Trend": -61,
@@ -105,8 +105,8 @@
             "Wind Direction": "71°"
         },
         "crc": {
-            "score": 1476395008,
-            "valid": false
+            "score": 0,
+            "valid": true
         }
     },
     {
@@ -134,7 +134,7 @@
     {
         "originalSize": 109,
         "validOffset": 0,
-        "validSize": 109,
+        "validSize": 108,
         "parsed": {
             "LOO": "LOO",
             "P|Barometric Trend": -61,
@@ -149,14 +149,14 @@
             "Wind Direction": "331°"
         },
         "crc": {
-            "score": 44858,
-            "valid": false
+            "score": 0,
+            "valid": true
         }
     },
     {
         "originalSize": 109,
         "validOffset": 0,
-        "validSize": 109,
+        "validSize": 108,
         "parsed": {
             "LOO": "LOO",
             "P|Barometric Trend": -61,
@@ -171,14 +171,14 @@
             "Wind Direction": "331°"
         },
         "crc": {
-            "score": 44858,
-            "valid": false
+            "score": 0,
+            "valid": true
         }
     },
     {
         "originalSize": 109,
         "validOffset": 0,
-        "validSize": 109,
+        "validSize": 108,
         "parsed": {
             "LOO": "LOO",
             "P|Barometric Trend": -61,
@@ -193,8 +193,8 @@
             "Wind Direction": "291°"
         },
         "crc": {
-            "score": 63358,
-            "valid": false
+            "score": 0,
+            "valid": true
         }
     },
     {
@@ -213,6 +213,446 @@
             "Wind Speed": 3,
             "10min Wind Speed": 195,
             "Wind Direction": "91°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 122,
+        "validOffset": 1,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 121,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 121,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 121,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 121,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 154,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.426,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 155,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.682,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 155,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.682,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 155,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.682,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
+        },
+        "crc": {
+            "score": 0,
+            "valid": true
+        }
+    },
+    {
+        "originalSize": 155,
+        "validOffset": 0,
+        "validSize": 108,
+        "parsed": {
+            "LOO": "LOO",
+            "P|Barometric Trend": -61,
+            "LOOP Type (0 or 1)": 172,
+            "Next Record Pointer": 963,
+            "Barometer": 45.682,
+            "Inside Temperature": "998.6° F",
+            "Inside Humidity": "194%",
+            "Outside Temperature": "-2227.1° F",
+            "Wind Speed": 34,
+            "10min Wind Speed": 195,
+            "Wind Direction": "131°"
         },
         "crc": {
             "score": 0,

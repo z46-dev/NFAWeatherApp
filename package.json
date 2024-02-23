@@ -1,6 +1,10 @@
 {
+    "name": "vantagepro",
+    "version": "v0.0.1",
+    "description": "Trying to decode the buffers received from the Davis Vantage Pro2 LOOP command",
     "type": "module",
-    "dependencies": {
-        "vantjs": "^1.0.10"
+    "author": {
+        "email": "evanparker6023@gmail.com",
+        "name": "Evan Parker"
     }
 }
