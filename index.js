@@ -16,7 +16,7 @@ function parse(originalBuffer) {
         validOffset++;
     }
 
-    const buffer = originalBuffer.slice(validOffset);
+    const buffer = originalBuffer.slice(validOffset, 108 + validOffset);
 
     console.log("Valid offset:", validOffset, "Buffer length:", buffer.length);
 
@@ -29,7 +29,6 @@ function parse(originalBuffer) {
     // s<n> = string of n bytes (s3, s4, s5, etc.)
     // u8 = unsigned 8-bit integer
     // u16 = unsigned 16-bit integer (little-endian)
-    console.log(buffer.readUInt8(5));
     const format = new Format(buffer, [
         ["s3", "LOO"],
         ["i8", "P|Barometric Trend"],
@@ -41,7 +40,7 @@ function parse(originalBuffer) {
         ["i16BE", "Outside Temperature", x => x / 10 + "° F"],
         ["u8", "Wind Speed"],
         ["u8", "10min Wind Speed"],
-        ["u16BE", "Wind Direction", x => x + "°"]
+        ["u16BE", "Wind Direction", x => (x % 360) + "°"]
     ]);
 
     console.log(format.parse());
