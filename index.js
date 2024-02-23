@@ -1,49 +1,10 @@
 import fs from "fs";
-import { validateCRC } from "./lib/CRC.js";
-import Format from "./lib/Format.js";
+import { parse } from "./lib/parser.js";
 
 const buffers = JSON.parse(fs.readFileSync("./buffers.json", "utf-8")).map(bufferedString => Buffer.from(bufferedString));
+const parsed = buffers.map(parse).map(p => ({
+    ...p,
+    parsed: Object.fromEntries(p.parsed)
+}));
 
-/**
- * @param {Buffer} originalBuffer
- */
-function parse(originalBuffer) {
-    console.log("Starting with a buffer", originalBuffer.length, "bytes long");
-
-    let validOffset = 0;
-
-    while (originalBuffer.at(validOffset) !== 0x4C && validOffset < originalBuffer.length) {
-        validOffset++;
-    }
-
-    const buffer = originalBuffer.slice(validOffset, 108 + validOffset);
-
-    console.log("Valid offset:", validOffset, "Buffer length:", buffer.length);
-
-    const CRCScore = validateCRC(buffer);
-
-    console.log("CRC Score:", CRCScore, "Valid:", CRCScore === 0);
-
-    // https://cdn.shopify.com/s/files/1/0515/5992/3873/files/VantageSerialProtocolDocs_v261.pdf?v=1614399559
-    // Page 22
-    // s<n> = string of n bytes (s3, s4, s5, etc.)
-    // u8 = unsigned 8-bit integer
-    // u16 = unsigned 16-bit integer (little-endian)
-    const format = new Format(buffer, [
-        ["s3", "LOO"],
-        ["i8", "P|Barometric Trend"],
-        ["u8", "LOOP Type (0 or 1)"],
-        ["u16BE", "Next Record Pointer"],
-        ["u16BE", "Barometer", x => x / 1000],
-        ["i16LE", "Inside Temperature", x => x / 10 + "° F"],
-        ["u8", "Inside Humidity", x => x + "%"],
-        ["i16BE", "Outside Temperature", x => x / 10 + "° F"],
-        ["u8", "Wind Speed"],
-        ["u8", "10min Wind Speed"],
-        ["u16BE", "Wind Direction", x => (x % 360) + "°"]
-    ]);
-
-    console.log(format.parse());
-}
-
-buffers.forEach(parse);
+fs.writeFileSync("./parsed.json", JSON.stringify(parsed, null, 4));
