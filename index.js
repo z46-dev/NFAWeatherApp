@@ -1,10 +1,28 @@
-import fs from "fs";
+import { SerialPort } from "serialport";
 import { parse } from "./lib/parser.js";
 
-const buffers = JSON.parse(fs.readFileSync("./buffers.json", "utf-8")).map(bufferedString => Buffer.from(bufferedString));
-const parsed = buffers.map(parse).map(p => ({
-    ...p,
-    parsed: Object.fromEntries(p.parsed)
-}));
+const port = new SerialPort({
+    path: "/dev/ttyUSB0",
+    baudRate: 19200
+})
 
-fs.writeFileSync("./parsed.json", JSON.stringify(parsed, null, 4));
+port.on("open", function onOpen() {
+    console.log("Port is open");
+
+    setTimeout(function onTimeout() {
+        port.write("LOOP 1\n", function onWrite(err) {
+            if (err) {
+                console.error("Error:", err);
+            }
+        });
+    }, 1000);
+});
+
+port.on("data", function onData(data) {
+    console.log(data.length, "bytes of data received");
+    try {
+        console.log(parse(data));
+    } catch (err) {
+        console.error("Error:", err);
+    }
+});
