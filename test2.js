@@ -1,4 +1,5 @@
 import { SerialPort } from "serialport";
+import { parse } from "./lib/parser";
 
 const port = new SerialPort({
     path: "/dev/ttyUSB0",
@@ -19,4 +20,10 @@ port.on("open", function onOpen() {
 
 port.on("data", function onData(data) {
     console.log("Data:", data);
+
+    try {
+        console.log(parse(data));
+    } catch (err) {
+        console.error("Error:", err);
+    }
 });
