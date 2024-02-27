@@ -1,5 +1,5 @@
 import { SerialPort } from "serialport";
-import { parse } from "./lib/parser";
+import { parse } from "./lib/parser.js";
 
 const port = new SerialPort({
     path: "/dev/ttyUSB0",
