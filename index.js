@@ -18,8 +18,6 @@ port.on("open", function onOpen() {
 });
 
 port.on("data", function onData(data) {
-    console.log(data.toString());
-
     if (data.length >= 99 && promiseListener !== undefined) {
         promiseListener(data);
         promiseListener = undefined;
@@ -45,6 +43,8 @@ function loop(timeout = 1000) {
     });
 }
 
+const list = fs.existsSync("data.json") ? JSON.parse(fs.readFileSync("data.json", "utf-8")) : [];
+
 async function readData() {
     let loopData;
 
@@ -58,11 +58,31 @@ async function readData() {
         const data = parse(loopData);
 
         if (data.crc.valid && data.parsed.get("LOO") === "Valid") {
-            console.log("Valid data:", data.parsed);
+            console.log("[" + (performance.now() / 1000 | 0) + "]", "Received valid data");
+            list.push({
+                timestamp: Date.now(),
+                data: Object.entries(data.parsed)
+            });
         } else {
-            console.error("Invalid data:", data);
+            console.log("[" + (performance.now() / 1000 | 0) + "]", "Received invalid data");
         }
     }
 
-    setTimeout(readData, 5000);
+    setTimeout(readData, 1000 * 60 * 10);
 }
+
+setInterval(function saveData() {
+    if (list.length === 0) {
+        return;
+    }
+
+    while (list.length > 0 && list[0].timestamp < Date.now() - 1000 * 60 * 60 * 24 * 14) {
+        list.shift();
+    }
+
+    try {
+        fs.writeFileSync("data.json", JSON.stringify(list), "utf-8");
+    } catch (err) {
+        console.error("Error saving data:", err);
+    }
+}, 1000 * 60 * 5);
