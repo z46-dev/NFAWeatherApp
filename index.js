@@ -50,7 +50,7 @@ function loop(timeout = 1000) {
 }
 
 loop().then(data => {
-    console.log("LOOP 1 is done");
+    console.log("LOOP 1 is done", data);
     console.log(parse(data));
 }).catch((err) => {
     console.error("Error:", err);
