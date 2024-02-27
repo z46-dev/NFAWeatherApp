@@ -1,8 +1,7 @@
 import { SerialPort } from "serialport";
-import { parse } from "./LOOPParser/parser.js";
+import { parse } from "./lib/parser.js";
 
-let loopListener = undefined,
-    barDataListener = undefined;
+let promiseListener = undefined;
 
 const port = new SerialPort({
     path: "/dev/ttyUSB0",
@@ -20,20 +19,15 @@ port.on("open", function onOpen() {
 port.on("data", function onData(data) {
     console.log(data.toString());
 
-    if (data.length > 95) {
-        if (loopListener !== undefined) {
-            loopListener(data);
-            loopListener = undefined;
-        }
-    } else if (barDataListener !== undefined) {
-        barDataListener(data);
-        barDataListener = undefined;
+    if (data.length >= 99 && promiseListener !== undefined) {
+        promiseListener(data);
+        promiseListener = undefined;
     }
 });
 
 function loop(timeout = 1000) {
     return new Promise((resolve, reject) => {
-        if (loopListener !== undefined) {
+        if (promiseListener !== undefined) {
             reject(new Error("Another LOOP is already running"));
             return;
         }
@@ -45,33 +39,13 @@ function loop(timeout = 1000) {
                 return reject(err);
             }
 
-            loopListener = resolve;
-        });
-    });
-}
-
-function getBarData(timeout = 1000) {
-    return new Promise((resolve, reject) => {
-        if (barDataListener !== undefined) {
-            reject(new Error("Another BARDATA is already running"));
-            return;
-        }
-
-        setTimeout(reject, timeout, new Error("BARDATA Timeout"));
-
-        port.write("BARDATA\n", function onWrite(err) {
-            if (err) {
-                return reject(err);
-            }
-
-            barDataListener = resolve;
+            promiseListener = resolve;
         });
     });
 }
 
 async function readData() {
-    let loopData,
-        barData;
+    let loopData;
 
     try {
         loopData = await loop();
@@ -79,18 +53,8 @@ async function readData() {
         console.error("LOOP Error:", err);
     }
 
-    try {
-        barData = await getBarData();
-    } catch (err) {
-        console.error("BARDATA Error:", err);
-    }
-
     if (loopData !== undefined) {
         console.log(parse(loopData));
-    }
-
-    if (barData !== undefined) {
-        console.log(barData);
     }
 
     setTimeout(readData, 5000);
