@@ -1,5 +1,5 @@
 import { SerialPort } from "serialport";
-import { parse } from "./lib/parser.js";
+import { parse } from "./LOOPParser/parser.js";
 
 let loopListener = undefined,
     barDataListener = undefined;
@@ -18,7 +18,7 @@ port.on("open", function onOpen() {
 });
 
 port.on("data", function onData(data) {
-    console.log(data.length, "bytes of data received");
+    console.log(data.toString());
 
     if (data.length > 95) {
         if (loopListener !== undefined) {
