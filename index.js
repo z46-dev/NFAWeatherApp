@@ -25,7 +25,7 @@ port.on("data", function onData(data) {
     console.log(data.length, "bytes of data received");
     
     if (loopListener !== undefined) {
-        loopListener();
+        loopListener(data);
         loopListener = undefined;
     }
 });
