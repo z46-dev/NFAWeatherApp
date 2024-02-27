@@ -1,5 +1,6 @@
+import fs from "fs";
 import { SerialPort } from "serialport";
-import { parse } from "./lib/parser.js";
+import parse from "./lib/parser.js";
 
 let promiseListener = undefined;
 
@@ -54,7 +55,13 @@ async function readData() {
     }
 
     if (loopData !== undefined) {
-        console.log(parse(loopData));
+        const data = parse(loopData);
+
+        if (data.crc.valid && data.parsed.get("LOO") === "Valid") {
+            console.log("Valid data:", data.parsed);
+        } else {
+            console.error("Invalid data:", data);
+        }
     }
 
     setTimeout(readData, 5000);
