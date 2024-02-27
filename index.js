@@ -61,7 +61,7 @@ async function readData() {
             console.log("[" + (performance.now() / 1000 | 0) + "]", "Received valid data");
             list.push({
                 timestamp: Date.now(),
-                data: Object.entries(data.parsed)
+                data: Object.fromEntries(data.parsed)
             });
         } else {
             console.log("[" + (performance.now() / 1000 | 0) + "]", "Received invalid data");
