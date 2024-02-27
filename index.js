@@ -13,20 +13,21 @@ port.on("open", function onOpen() {
     console.log("Port is open");
 
     setTimeout(function onTimeout() {
-        port.write("LOOP 1\n", function onWrite(err) {
-            if (err) {
-                console.error("Error:", err);
-            }
-        });
+        readData();
     }, 1000);
 });
 
 port.on("data", function onData(data) {
     console.log(data.length, "bytes of data received");
-    
-    if (loopListener !== undefined) {
-        loopListener(data);
-        loopListener = undefined;
+
+    if (data.length > 95) {
+        if (loopListener !== undefined) {
+            loopListener(data);
+            loopListener = undefined;
+        }
+    } else if (barDataListener !== undefined) {
+        barDataListener(data);
+        barDataListener = undefined;
     }
 });
 
@@ -49,9 +50,48 @@ function loop(timeout = 1000) {
     });
 }
 
-loop().then(data => {
-    console.log("LOOP 1 is done", data);
-    console.log(parse(data));
-}).catch((err) => {
-    console.error("Error:", err);
-});
+function getBarData(timeout = 1000) {
+    return new Promise((resolve, reject) => {
+        if (barDataListener !== undefined) {
+            reject(new Error("Another BARDATA is already running"));
+            return;
+        }
+
+        setTimeout(reject, timeout, new Error("BARDATA Timeout"));
+
+        port.write("BARDATA\n", function onWrite(err) {
+            if (err) {
+                return reject(err);
+            }
+
+            barDataListener = resolve;
+        });
+    });
+}
+
+async function readData() {
+    let loopData,
+        barData;
+
+    try {
+        loopData = await loop();
+    } catch (err) {
+        console.error("LOOP Error:", err);
+    }
+
+    try {
+        barData = await getBarData();
+    } catch (err) {
+        console.error("BARDATA Error:", err);
+    }
+
+    if (loopData !== undefined) {
+        console.log(parse(loopData));
+    }
+
+    if (barData !== undefined) {
+        console.log(barData);
+    }
+
+    setTimeout(readData, 5000);
+}
