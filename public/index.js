@@ -1,4 +1,5 @@
 import Barometer from "./plugins/Barometer.js";
+import Rain from "./plugins/Rain.js";
 import Temperature from "./plugins/Temperature.js";
 import Wind from "./plugins/Wind.js";
 import { off, on } from "./plugins/loader.js";
@@ -7,6 +8,7 @@ const barometer = new Barometer();
 const insideTemperature = new Temperature("Inside");
 const outsideTemperature = new Temperature("Outside");
 const wind = new Wind();
+const rain = new Rain();
 
 class Data {
     static #DATA_URL = location.hostname === "wx.nfaschool.org" ? "//wx.nfaschool.org/api/data.json" : "./data.json";
@@ -66,6 +68,14 @@ function init() {
     wind.windDirections.length = 0;
     wind.timestamps.length = 0;
 
+    rain.rainRates.length = 0;
+    rain.dayRains.length = 0;
+    rain.monthRains.length = 0;
+    rain.yearRains.length = 0;
+    rain.stormRains.length = 0;
+    rain.stormStartDates.length = 0;
+    rain.timestamps.length = 0;
+
     Data.data.forEach(entry => {
         barometer.barometerValues.push(entry.data["Barometer"]);
         barometer.trends.push(entry.data["P|Barometric Trend"] / 20);
@@ -83,6 +93,14 @@ function init() {
         wind.avg10Min.push(entry.data["10min Wind Speed"]);
         wind.windDirections.push(entry.data["Wind Direction"]);
         wind.timestamps.push(entry.timestamp);
+
+        rain.rainRates.push(entry.data["Rain Rate"]);
+        rain.dayRains.push(entry.data["Day Rain"]);
+        rain.monthRains.push(entry.data["Month Rain"]);
+        rain.yearRains.push(entry.data["Year Rain"]);
+        rain.stormRains.push(entry.data["Storm Rain"]);
+        rain.stormStartDates.push(entry.data["Storm Start Date"]);
+        rain.timestamps.push(entry.timestamp);
     });
 }
 
@@ -91,6 +109,7 @@ canvasGrid.appendChild(barometer.place(64));
 canvasGrid.appendChild(insideTemperature.place(64));
 canvasGrid.appendChild(outsideTemperature.place(64));
 canvasGrid.appendChild(wind.place(64));
+canvasGrid.appendChild(rain.place(64));
 
 const timeSelect = document.getElementById("timeSelect");
 timeSelect.onchange = function() {

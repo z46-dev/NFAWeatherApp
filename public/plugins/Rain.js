@@ -1,7 +1,11 @@
 export default class Rain {
     constructor() {
-        this.dayRain = []; // Array of barometer values
-        this.trends = []; // -2, -1, 0, 1, 2
+        this.rainRates = []; // Array of rain rate values
+        this.dayRains = []; // Array of day rain values
+        this.monthRains = []; // Array of month rain values
+        this.yearRains = []; // Array of year rain values
+        this.stormRains = []; // Array of storm rain values
+        this.stormStartDates = []; // Array of storm start dates (mm/dd/yyyy)
         this.timestamps = []; // Array of timestamps
 
         this.canvas = document.createElement("canvas");
@@ -9,16 +13,6 @@ export default class Rain {
 
         this.canvas.width = 512;
         this.canvas.height = 256 + 128;
-
-        this.dots = [];
-
-        for (let i = 0; i < this.canvas.width; i += 8) {
-            this.dots.push({
-                x: i,
-                y: Math.random() * 256,
-                speed: Math.random() * 2 + 2
-            });
-        }
 
         this.ctx.textBaseline = "middle";
         this.ctx.textAlign = "center";
@@ -43,92 +37,70 @@ export default class Rain {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Current value + Animation
-        const currentValue = this.barometerValues[this.barometerValues.length - 1];
-        const currentTrend = this.trends[this.trends.length - 1];
-
-        if (currentTrend === undefined) {
-            return;
-        }
+        // Current Value
+        const index = this.rainRates.length - 1;
+        const currentRainRate = this.rainRates[index];
+        const currentDayRain = this.dayRains[index];
+        const currentMonthRain = this.monthRains[index];
+        const currentYearRain = this.yearRains[index];
+        const currentStormRain = this.stormRains[index];
+        const currentStormStartDate = this.stormStartDates[index];
 
         ctx.fillStyle = "#CC5555";
         ctx.fillRect(0, 0, 512, 256);
 
-        ctx.fillStyle = "#AA2222";
-        ctx.globalAlpha = .5;
-
-        for (let i = 0; i < this.dots.length; i++) {
-            ctx.beginPath();
-            ctx.arc(this.dots[i].x, this.dots[i].y, 4, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.closePath();
-
-            if (currentTrend === 0) {
-                this.dots[i].x += this.dots[i].speed * (Math.sin(performance.now() / 3000) + .5);
-                this.dots[i].y = i / this.dots.length * 256;
-
-                if (this.dots[i].x > canvas.width) {
-                    this.dots[i].x = 0;
-                }
-
-                if (this.dots[i].x < 0) {
-                    this.dots[i].x = canvas.width;
-                }
-            } else {
-                this.dots[i].x = i / this.dots.length * canvas.width;
-                this.dots[i].y -= this.dots[i].speed * currentTrend;
-
-                if (this.dots[i].y < 0) {
-                    this.dots[i].y = 256;
-                }
-
-                if (this.dots[i].y > 256) {
-                    this.dots[i].y = 0;
-                }
-            }
-        }
-
-        ctx.globalAlpha = 1;
         ctx.fillStyle = "#FFFFFF";
         ctx.font = "bold 32px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("Rain & Storm History", 256, 32);
 
-        ctx.fillText("Barometer: " + currentValue + " in Hg", 256, 128);
         ctx.font = "bold 24px sans-serif";
-        ctx.fillText("Trend: " + Barometer.trendString(currentTrend), 256, 192);
+        ctx.textAlign = "left";
+        ctx.fillText("Rain Rate: " + currentRainRate + " clicks", 24, 64);
+        ctx.fillText("Day's Rain: " + currentDayRain + " clicks", 24, 96);
+        ctx.fillText("Month's Rain: " + currentMonthRain + " clicks", 24, 128);
+        ctx.fillText("Year's Rain: " + currentYearRain + " clicks", 24, 160);
+        if (currentStormRain > 0) {
+            ctx.fillText("Storm's Rain: " + currentStormRain + " clicks", 24, 192);
+            ctx.fillText("Storm started on " + currentStormStartDate, 24, 224);
+        } else {
+            ctx.fillText("No Storm", 24, 192);
+        }
+
+        ctx.fillStyle = "#CCCC55";
+        ctx.fillRect(8, 64 - 12, 12, 24);
+        ctx.fillStyle = "#55CCCC";
+        ctx.fillRect(8, 96 - 12, 12, 24);
 
         // History graph
-        const entries = this.barometerValues.length;
+        const entries = this.rainRates.length;
         const spacing = 512 / entries;
-        const values = [];
-
-        let min = 9999,
-            max = -9999;
-
-        for (let i = 0; i < entries; i++) {
-            const value = (this.barometerValues[i] - 20) / 12.5;
-            values.push(value);
-
-            if (value < min) {
-                min = value;
-            }
-
-            if (value > max) {
-                max = value;
-            }
-        }
+        
+        let min = Math.min(...this.rainRates, ...this.dayRains),
+            max = Math.max(...this.rainRates, ...this.dayRains);
 
         ctx.fillStyle = "#C92A39";
         ctx.fillRect(0, 256, 512, 128);
 
         ctx.beginPath();
-        ctx.moveTo(0, 256 + 128 - ((values[0] - min) / (max - min)) * 128);
+        ctx.moveTo(0, 256 + 128 - ((this.rainRates[0] - min) / (max - min)) * 128);
 
         for (let i = 1; i < entries; i++) {
-            ctx.lineTo(i * spacing, 256 + 128 - ((values[i] - min) / (max - min)) * 128);
+            ctx.lineTo(i * spacing, 256 + 128 - ((this.rainRates[i] - min) / (max - min)) * 128);
         }
 
-        ctx.strokeStyle = "#FFFFFF";
+        ctx.strokeStyle = "#55CCCC";
         ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(0, 256 + 128 - ((this.dayRains[0] - min) / (max - min)) * 128);
+
+        for (let i = 1; i < entries; i++) {
+            ctx.lineTo(i * spacing, 256 + 128 - ((this.dayRains[i] - min) / (max - min)) * 128);
+        }
+
+        ctx.strokeStyle = "#CCCC55";
         ctx.stroke();
 
         if (this.mouse.y > 256) {
@@ -137,10 +109,11 @@ export default class Rain {
             if (selected >= 0 && selected < entries) {
                 ctx.fillStyle = "#FFFFFF";
                 ctx.font = "bold 16px sans-serif";
+                ctx.textAlign = "center";
                 ctx.fillText(new Date(this.timestamps[selected]).toLocaleString("en-US", {
                     dateStyle: "short",
                     timeStyle: "short"
-                }) + " - " + this.barometerValues[selected] + " in Hg", 256, 256 - 8);
+                }) + " - Rain Rate: " + this.rainRates[selected] + " clicks Day's Rain: " + this.dayRains[selected] + " clicks", 256, 256 - 8);
 
                 ctx.strokeStyle = "#FFFFFF";
                 ctx.beginPath();
