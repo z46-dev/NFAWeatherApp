@@ -88,7 +88,7 @@ export default class Temperature {
 
         ctx.font = "bold 24px sans-serif";
         ctx.textAlign = "left";
-        ctx.fillText("Temperature: " + currentTemperature + "° F", 24, 64);
+        ctx.fillText("Temperature: " + currentTemperature + "\u00B0 F", 24, 64);
         ctx.fillText("Humidity: " + currentHumidity + "%", 24, 96);
 
         ctx.fillStyle = "#CCCC55";
@@ -98,8 +98,8 @@ export default class Temperature {
 
         ctx.font = "bold 18px sans-serif";
         ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("HI: " + Math.max(...this.temperatures) + "° F, " + Math.max(...this.humidities) + "%", 24, 128);
-        ctx.fillText("LO: " + Math.min(...this.temperatures) + "° F, " + Math.min(...this.humidities) + "%", 24, 160);
+        ctx.fillText("HI: " + Math.max(...this.temperatures) + "\u00B0 F, " + Math.max(...this.humidities) + "%", 24, 128);
+        ctx.fillText("LO: " + Math.min(...this.temperatures) + "\u00B0 F, " + Math.min(...this.humidities) + "%", 24, 160);
 
         ctx.font = "bold 32px sans-serif";
         ctx.textAlign = "right";
@@ -156,7 +156,7 @@ export default class Temperature {
                 ctx.fillText(new Date(this.timestamps[selected]).toLocaleString("en-US", {
                     dateStyle: "short",
                     timeStyle: "short"
-                }) + " - " + this.temperatures[selected] + "° F " + this.humidities[selected] + "%", 256, 256 - 8);
+                }) + " - " + this.temperatures[selected] + "\u00B0 F " + this.humidities[selected] + "%", 256, 256 - 8);
 
                 ctx.strokeStyle = "#FFFFFF";
                 ctx.beginPath();
