@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>NFA Weather</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="icon" href="./img/NFAfavicon.ico" />
+    <script src="./index.js" type="module" defer></script>
+</head>
+
+<body>
+    <div id="banner">
+        <img src="./img/NFA_learn_connect.png" alt="NFA Banner" />
+        <lable for="timeSelect">Data Period</lable>
+        <select id="timeSelect" value="3 Hours">
+            <!-- Values are expressions that are parsed without eval -->
+            <option value="3">3 Hours</option>
+            <option value="6">6 Hours</option>
+            <option value="12">12 Hours</option>
+            <option value="18">18 Hours</option>
+            <option value="24">1 Day</option>
+            <option value="72">3 Days</option>
+            <option value="24 * 7">1 Week</option>
+            <option value="24 * 7 * 2">2 Weeks</option>
+            <option value="24 * 30.4">1 Month</option>
+            <option value="24 * 30.4 * 3">3 Months</option>
+            <option value="24 * 30.4 * 6">6 Months</option>
+            <option value="Infinity">All Data</option>
+        </select>
+    </div>
+    <div id="canvasGrid"></div>
+    <div id="footer">
+        <p>
+            This site was designed and programmed by Evan Parker, class of 2024, and is actively being worked on.<br />
+            The data is sourced from Davis Instruments Vantage Pro2&trade; on top of the Cranston building.<br />
+            <i>This site is currently in development, and not complete. Do not rely on any information here until finished.</i>
+        </p>
+    </div>
+</body>
+
+</html>
