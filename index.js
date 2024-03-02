@@ -1,6 +1,7 @@
 import fs from "fs";
 import { SerialPort } from "serialport";
 import parse from "./lib/parser.js";
+import LZ77 from "./lib/LZ77.js";
 
 let promiseListener = undefined;
 
@@ -68,10 +69,12 @@ async function readData() {
         }
     }
 
-    setTimeout(readData, 1000 * 60 * 10);
+    saveData();
+
+    setTimeout(readData, 1000 * 60 * 5);
 }
 
-setInterval(function saveData() {
+function saveData() {
     if (list.length === 0) {
         return;
     }
@@ -81,8 +84,8 @@ setInterval(function saveData() {
     }
 
     try {
-        fs.writeFileSync("data.json", JSON.stringify(list), "utf-8");
+        fs.writeFileSync("data.json", LZ77.compress(JSON.stringify(list)), "utf-8");
     } catch (err) {
         console.error("Error saving data:", err);
     }
-}, 1000 * 60 * 5);
+}
