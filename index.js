@@ -90,6 +90,7 @@ server.get("/api/data.json", (request, response) => {
             return;
         }
 
+        console.log(maxAge);
         response.json(DataManager.getTimePeriod(maxAge));
     } catch (e) {
         console.log(e);
