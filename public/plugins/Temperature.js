@@ -20,7 +20,7 @@ export default class Temperature {
             return "Warm";
         }
 
-        if (value > 50) {
+        if (value > 45) {
             return "Mild";
         }
 
