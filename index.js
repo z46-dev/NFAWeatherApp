@@ -84,7 +84,12 @@ function saveData() {
     }
 
     try {
-        fs.writeFileSync("data.json", LZ77.compress(JSON.stringify(list)), "utf-8");
+        const data = JSON.stringify(list);
+        const compressed = LZ77.compress(data);
+
+        console.log(data.length, compressed.length, (1 - compressed.length / data.length) * 100 + "% saved");
+
+        fs.writeFileSync("data.txt", compressed, "utf-8");
     } catch (err) {
         console.error("Error saving data:", err);
     }
