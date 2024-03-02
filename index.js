@@ -44,7 +44,7 @@ function loop(timeout = 1000) {
     });
 }
 
-const list = fs.existsSync("data.json") ? JSON.parse(fs.readFileSync("data.json", "utf-8")) : [];
+const list = fs.existsSync("data.txt") ? JSON.parse(LZ77.decompress(fs.readFileSync("data.txt", "utf-8"))) : [];
 
 async function readData() {
     let loopData;
