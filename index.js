@@ -59,11 +59,10 @@ async function readData() {
 
         if (data.crc.valid && data.parsed.get("LOO") === "Valid") {
             console.log("[" + (performance.now() / 1000 | 0) + "]", "Received valid data");
-            console.log(data.parsed);
-            /*list.push({
+            list.push({
                 timestamp: Date.now(),
                 data: Object.fromEntries(data.parsed)
-            });*/
+            });
         } else {
             console.log("[" + (performance.now() / 1000 | 0) + "]", "Received invalid data");
         }
