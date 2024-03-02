@@ -89,7 +89,7 @@ export default class Rain {
             ctx.lineTo(i * spacing, 256 + 128 - ((this.rainRates[i] - min) / (max - min)) * 128);
         }
 
-        ctx.strokeStyle = "#55CCCC";
+        ctx.strokeStyle = "#CCCC55";
         ctx.lineWidth = 2;
         ctx.stroke();
 
@@ -100,7 +100,7 @@ export default class Rain {
             ctx.lineTo(i * spacing, 256 + 128 - ((this.dayRains[i] - min) / (max - min)) * 128);
         }
 
-        ctx.strokeStyle = "#CCCC55";
+        ctx.strokeStyle = "#55CCCC";
         ctx.stroke();
 
         if (this.mouse.y > 256) {

@@ -1,4 +1,5 @@
 import Barometer from "./plugins/Barometer.js";
+import Forecast from "./plugins/Forecast.js";
 import Rain from "./plugins/Rain.js";
 import Temperature from "./plugins/Temperature.js";
 import Wind from "./plugins/Wind.js";
@@ -9,6 +10,7 @@ const insideTemperature = new Temperature("Inside");
 const outsideTemperature = new Temperature("Outside");
 const wind = new Wind();
 const rain = new Rain();
+const forecast = new Forecast();
 
 class Data {
     static #DATA_URL = location.hostname === "wx.nfaschool.org" ? "//wx.nfaschool.org/api/data.json" : "./data.json";
@@ -76,6 +78,11 @@ function init() {
     rain.stormStartDates.length = 0;
     rain.timestamps.length = 0;
 
+    forecast.forecasts.length = 0;
+    forecast.sunrises.length = 0;
+    forecast.sunsets.length = 0;
+    forecast.timestamps.length = 0;
+
     Data.data.forEach(entry => {
         barometer.barometerValues.push(entry.data["Barometer"]);
         barometer.trends.push(entry.data["P|Barometric Trend"] / 20);
@@ -101,6 +108,11 @@ function init() {
         rain.stormRains.push(entry.data["Storm Rain"]);
         rain.stormStartDates.push(entry.data["Storm Start Date"]);
         rain.timestamps.push(entry.timestamp);
+
+        forecast.forecasts.push(entry.data["Forecast"]);
+        forecast.sunrises.push(entry.data["Time of Sunrise"]);
+        forecast.sunsets.push(entry.data["Time of Sunset"]);
+        forecast.timestamps.push(entry.timestamp);
     });
 }
 
@@ -110,6 +122,7 @@ canvasGrid.appendChild(insideTemperature.place(64));
 canvasGrid.appendChild(outsideTemperature.place(64));
 canvasGrid.appendChild(wind.place(64));
 canvasGrid.appendChild(rain.place(64));
+canvasGrid.appendChild(forecast.place(64));
 
 const timeSelect = document.getElementById("timeSelect");
 timeSelect.onchange = function() {
