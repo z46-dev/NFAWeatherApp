@@ -87,15 +87,15 @@ function init() {
         barometer.barometerValues.push(entry.data["Barometer"]);
         barometer.trends.push(entry.data["P|Barometric Trend"] / 20);
         barometer.timestamps.push(entry.timestamp);
-    
+
         insideTemperature.temperatures.push(entry.data["Inside Temperature"]);
         insideTemperature.humidities.push(entry.data["Inside Humidity"] * 100 | 0);
         insideTemperature.timestamps.push(entry.timestamp);
-    
+
         outsideTemperature.temperatures.push(entry.data["Outside Temperature"]);
         outsideTemperature.humidities.push(entry.data["Outside Humidity"] * 100 | 0);
         outsideTemperature.timestamps.push(entry.timestamp);
-    
+
         wind.windSpeeds.push(entry.data["Wind Speed"]);
         wind.avg10Min.push(entry.data["10min Wind Speed"]);
         wind.windDirections.push(entry.data["Wind Direction"]);
@@ -125,7 +125,7 @@ canvasGrid.appendChild(rain.place(64));
 canvasGrid.appendChild(forecast.place(64));
 
 const timeSelect = document.getElementById("timeSelect");
-timeSelect.onchange = function() {
+timeSelect.onchange = function () {
     const value = timeSelect.value;
     const chunks = value.split(" ");
 
@@ -184,3 +184,9 @@ timeSelect.onchange = function() {
     Data.time = v;
     Data.load(v);
 }
+
+fetch("https://www.example.com/").then($ => $.text()).then(() => {
+    document.getElementById("w1hloLink").style.display = "block";
+}).catch(e => {
+    console.log("Club website not up, not bothering to show link", e);
+});
