@@ -56,12 +56,12 @@ export default class Rain {
 
         ctx.font = "bold 24px sans-serif";
         ctx.textAlign = "left";
-        ctx.fillText("Rain Rate: " + currentRainRate + " clicks", 24, 64);
-        ctx.fillText("Day's Rain: " + currentDayRain + " clicks", 24, 96);
-        ctx.fillText("Month's Rain: " + currentMonthRain + " clicks", 24, 128);
-        ctx.fillText("Year's Rain: " + currentYearRain + " clicks", 24, 160);
+        ctx.fillText("Rain Rate: " + currentRainRate + " 100th in", 24, 64);
+        ctx.fillText("Day's Rain: " + currentDayRain + " 100th in", 24, 96);
+        ctx.fillText("Month's Rain: " + currentMonthRain + " 100th in", 24, 128);
+        ctx.fillText("Year's Rain: " + currentYearRain + " 100th in", 24, 160);
         if (currentStormRain > 0) {
-            ctx.fillText("Storm's Rain: " + currentStormRain + " clicks", 24, 192);
+            ctx.fillText("Storm's Rain: " + currentStormRain + " 100th in", 24, 192);
             ctx.fillText("Storm started on " + currentStormStartDate, 24, 224);
         } else {
             ctx.fillText("No Storm", 24, 192);
@@ -113,7 +113,7 @@ export default class Rain {
                 ctx.fillText(new Date(this.timestamps[selected]).toLocaleString("en-US", {
                     dateStyle: "short",
                     timeStyle: "short"
-                }) + " - Rain Rate: " + this.rainRates[selected] + " clicks Day's Rain: " + this.dayRains[selected] + " clicks", 256, 256 - 8);
+                }) + " - Rain Rate: " + this.rainRates[selected] + " 100th in Day's Rain: " + this.dayRains[selected] + " 100th in", 256, 256 - 8);
 
                 ctx.strokeStyle = "#FFFFFF";
                 ctx.beginPath();

@@ -6,7 +6,7 @@ import Wind from "./plugins/Wind.js";
 import { off, on } from "./plugins/loader.js";
 
 const barometer = new Barometer();
-const insideTemperature = new Temperature("Inside");
+//const insideTemperature = new Temperature("Inside");
 const outsideTemperature = new Temperature("Outside");
 const wind = new Wind();
 const rain = new Rain();
@@ -57,9 +57,9 @@ function init() {
     barometer.trends.length = 0;
     barometer.timestamps.length = 0;
 
-    insideTemperature.temperatures.length = 0;
-    insideTemperature.humidities.length = 0;
-    insideTemperature.timestamps.length = 0;
+    // insideTemperature.temperatures.length = 0;
+    // insideTemperature.humidities.length = 0;
+    // insideTemperature.timestamps.length = 0;
 
     outsideTemperature.temperatures.length = 0;
     outsideTemperature.humidities.length = 0;
@@ -88,9 +88,9 @@ function init() {
         barometer.trends.push(entry.data["P|Barometric Trend"] / 20);
         barometer.timestamps.push(entry.timestamp);
 
-        insideTemperature.temperatures.push(entry.data["Inside Temperature"]);
-        insideTemperature.humidities.push(entry.data["Inside Humidity"] * 100 | 0);
-        insideTemperature.timestamps.push(entry.timestamp);
+        // insideTemperature.temperatures.push(entry.data["Inside Temperature"]);
+        // insideTemperature.humidities.push(entry.data["Inside Humidity"] * 100 | 0);
+        // insideTemperature.timestamps.push(entry.timestamp);
 
         outsideTemperature.temperatures.push(entry.data["Outside Temperature"]);
         outsideTemperature.humidities.push(entry.data["Outside Humidity"] * 100 | 0);
@@ -117,10 +117,10 @@ function init() {
 }
 
 const canvasGrid = document.getElementById("canvasGrid");
-canvasGrid.appendChild(barometer.place(64));
-canvasGrid.appendChild(insideTemperature.place(64));
-canvasGrid.appendChild(outsideTemperature.place(64));
 canvasGrid.appendChild(wind.place(64));
+canvasGrid.appendChild(barometer.place(64));
+// canvasGrid.appendChild(insideTemperature.place(64));
+canvasGrid.appendChild(outsideTemperature.place(64));
 canvasGrid.appendChild(rain.place(64));
 canvasGrid.appendChild(forecast.place(64));
 
