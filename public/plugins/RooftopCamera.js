@@ -18,6 +18,9 @@ export default class RooftopCamera {
         this.canvas.addEventListener("mousedown", () => {
             document.getElementById("displayWindow").style.display = "block";
         });
+        document.getElementById("displayWindow").addEventListener("mousedown", () => {
+            document.getElementById("displayWindow").style.display = "none";
+        });
     }
 
     draw() {
