@@ -13,6 +13,11 @@ export default class RooftopCamera {
         this.ctx.textBaseline = "middle";
         this.ctx.textAlign = "center";
         this.ctx.lineCap = this.ctx.lineJoin = "round";
+
+        document.getElementById("displayWindow").src = src;
+        this.canvas.addEventListener("click", () => {
+            document.getElementById("displayWindow").display = "block";
+        });
     }
 
     draw() {
@@ -25,6 +30,13 @@ export default class RooftopCamera {
         // Draw the image as width important
         const heightRatio = this.image.height / this.image.width;
         ctx.drawImage(this.image, 0, 0, canvas.width, canvas.width * heightRatio);
+
+        ctx.fillStyle = "#C92A39";
+        ctx.fillRect(0, 256, 512, 128);
+
+        ctx.font = "bold 48px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("Click to Enlarge!", 256, 320);
     }
 
     place(widthSize) {

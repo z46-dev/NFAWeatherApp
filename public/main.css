@@ -123,3 +123,11 @@ option {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+#displayWindow {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    display: none;
+}
