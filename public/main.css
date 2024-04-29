@@ -130,4 +130,5 @@ option {
     left: 0px;
     width: 100%;
     display: none;
+    z-index: 100;
 }

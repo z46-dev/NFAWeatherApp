@@ -15,7 +15,7 @@ export default class RooftopCamera {
         this.ctx.lineCap = this.ctx.lineJoin = "round";
 
         document.getElementById("displayWindow").src = src;
-        this.canvas.addEventListener("click", () => {
+        this.canvas.addEventListener("mousedown", () => {
             document.getElementById("displayWindow").display = "block";
         });
     }
