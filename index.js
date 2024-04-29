@@ -7,6 +7,8 @@ import redirectServer from "./lib/redirectServer.js";
 import parse from "./lib/parser.js";
 import DataManager from "./lib/DataManager.js";
 
+const WEBCAM_IMAGE_PATH = "../webcam/rooftop_webcam.jpg";
+
 let promiseListener = undefined;
 
 const port = new SerialPort({
@@ -97,15 +99,18 @@ server.get("/api/data.json", (request, response) => {
     }
 });
 
+server.get("/webcam/photo.jpg", (request, response) => {
+    try {
+        if (fs.existsSync(WEBCAM_IMAGE_PATH)) {
+            response.sendFile(WEBCAM_IMAGE_PATH);
+        } else {
+            response.send("error");
+        }
+    } catch (e) {
+        console.log(e);
+        response.send("error");
+    }
+});
+
 server.listen(() => console.log("Web Server is listening"));
 redirectServer.listen(80, () => console.log("Redirect server is listening"));
-
-if (true) {
-    console.log(fs.readdirSync("../webcam"));
-    fs.watch("../webcam", {
-        persistent: true,
-        recursive: true
-    }, function onChange(event, filename) {
-        console.log(event, filename);
-    });
-}
