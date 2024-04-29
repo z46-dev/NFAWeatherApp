@@ -99,3 +99,13 @@ server.get("/api/data.json", (request, response) => {
 
 server.listen(() => console.log("Web Server is listening"));
 redirectServer.listen(80, () => console.log("Redirect server is listening"));
+
+if (true) {
+    console.log(fs.readdirSync("../webcam"));
+    fs.watch("../webcam", {
+        persistent: true,
+        recursive: true
+    }, function onChange(event, filename) {
+        console.log(event, filename);
+    });
+}
