@@ -1,6 +1,7 @@
 import Barometer from "./plugins/Barometer.js";
 import Forecast from "./plugins/Forecast.js";
 import Rain from "./plugins/Rain.js";
+import RooftopCamera from "./plugins/RooftopCamera.js";
 import Temperature from "./plugins/Temperature.js";
 import Wind from "./plugins/Wind.js";
 import { off, on } from "./plugins/loader.js";
@@ -11,6 +12,7 @@ const outsideTemperature = new Temperature("Outside");
 const wind = new Wind();
 const rain = new Rain();
 const forecast = new Forecast();
+const rooftop = new RooftopCamera("Rooftop Camera", "//wx.nfaschool.org/webcam/photo.jpg");
 
 class Data {
     static #DATA_URL = location.hostname === "wx.nfaschool.org" ? "//wx.nfaschool.org/api/data.json" : "./data.json";
@@ -123,6 +125,7 @@ canvasGrid.appendChild(barometer.place(64));
 canvasGrid.appendChild(outsideTemperature.place(64));
 canvasGrid.appendChild(rain.place(64));
 canvasGrid.appendChild(forecast.place(64));
+canvasGrid.appendChild(rooftop.place(64));
 
 const timeSelect = document.getElementById("timeSelect");
 timeSelect.onchange = function () {
