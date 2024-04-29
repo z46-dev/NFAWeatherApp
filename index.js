@@ -102,7 +102,8 @@ server.get("/api/data.json", (request, response) => {
 server.get("/webcam/photo.jpg", (request, response) => {
     try {
         if (fs.existsSync(WEBCAM_IMAGE_PATH)) {
-            response.sendFile(WEBCAM_IMAGE_PATH);
+            response.setHeader("Content-Type", "image/jpg");
+            response.send(fs.readFileSync(WEBCAM_IMAGE_PATH));
         } else {
             response.send("error");
         }
