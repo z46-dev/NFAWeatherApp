@@ -19,10 +19,6 @@ body {
     padding: 0px;
 }
 
-body {
-    overflow-y: auto;
-}
-
 /* Banner Design */
 #banner {
     width: 100%;
