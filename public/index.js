@@ -119,13 +119,13 @@ function init() {
 }
 
 const canvasGrid = document.getElementById("canvasGrid");
-canvasGrid.appendChild(wind.place(64));
-canvasGrid.appendChild(barometer.place(64));
-// canvasGrid.appendChild(insideTemperature.place(64));
-canvasGrid.appendChild(outsideTemperature.place(64));
-canvasGrid.appendChild(rain.place(64));
-canvasGrid.appendChild(forecast.place(64));
-canvasGrid.appendChild(rooftop.place(64));
+canvasGrid.appendChild(wind.place(48));
+canvasGrid.appendChild(barometer.place(48));
+// canvasGrid.appendChild(insideTemperature.place(48));
+canvasGrid.appendChild(outsideTemperature.place(48));
+canvasGrid.appendChild(rain.place(48));
+canvasGrid.appendChild(forecast.place(48));
+canvasGrid.appendChild(rooftop.place(48));
 
 const timeSelect = document.getElementById("timeSelect");
 timeSelect.onchange = function () {

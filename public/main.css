@@ -57,7 +57,7 @@ option {
 /* Canvas Items in this container should be in a grid centered on the screen */
 #canvasGrid {
     display: inline-grid;
-    grid-template-columns: repeat(auto-fit, minmax(64vmin, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(48vmin, 1fr));
     justify-self: center;
     justify-items: center;
     width: calc(100% - 4vmin);
